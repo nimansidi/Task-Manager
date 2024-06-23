@@ -32,3 +32,5 @@ app.use('/api/tasks', taskRoutes);
 
 // Handle preflight requests
 app.options('*', cors());
+
+app.listen(process.env.PORT || 5000, () => console.log("Server running on port 5000"));
