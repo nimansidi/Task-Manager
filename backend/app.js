@@ -6,17 +6,16 @@ const bodyParser = require('body-parser');
 const app = express();
 
 // Middleware
-app.use(cors(
-  {
-    origin: ["https://task-manager-assignment-frontend.vercel.app"],
-    methods: ["POST", "GET", "DELETE", "PUT"],
-    credentials: true
-  }
-));
+app.use(cors({
+  origin: 'https://task-manager-assignment-frontend.vercel.app', // Your frontend URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  credentials: true
+}));
+
 app.use(bodyParser.json());
 
 // MongoDB connection
-const mongoURI = 'mongodb+srv://abh1nav:Abh1nav%4009@taskmanager.9z2q7q7.mongodb.net/'; // Adjust this URI according to your MongoDB setup
+const mongoURI = 'mongodb+srv://abh1nav:Abh1nav%4009@taskmanager.9z2q7q7.mongodb.net/?retryWrites=true&w=majority'; // Make sure this URI is correct
 
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
@@ -29,3 +28,9 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
 const taskRoutes = require('./routes/tasks');
 app.use('/api/tasks', taskRoutes);
 
+// Handle preflight requests
+app.options('*', cors({
+  origin: 'https://task-manager-assignment-frontend.vercel.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  credentials: true
+}));
