@@ -9,7 +9,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/tasks")
+      .get("https://task-manager-livid-omega.vercel.app/api/tasks")
       .then((response) => setTasks(response.data))
       .catch((error) => console.error("Error fetching tasks:", error));
   }, []);
@@ -22,7 +22,7 @@ function App() {
     e.preventDefault();
     if (editId) {
       axios
-        .put(`http://localhost:5000/api/tasks/${editId}`, form)
+        .put(`https://task-manager-livid-omega.vercel.app/api/tasks/${editId}`, form)
         .then((response) => {
           setTasks(
             tasks.map((task) => (task._id === editId ? response.data : task))
@@ -61,7 +61,7 @@ function App() {
 
   const handleDelete = (id) => {
     axios
-      .delete(`http://localhost:5000/api/tasks/${id}`)
+      .delete(`https://task-manager-livid-omega.vercel.app/api/tasks/${id}`)
       .then(() => {
         setTasks(tasks.filter((task) => task._id !== id));
         setError(null);
