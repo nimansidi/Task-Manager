@@ -15,7 +15,7 @@ app.use(cors({
 app.use(bodyParser.json());
 
 // MongoDB connection
-const mongoURI = 'mongodb+srv://abh1nav:Abh1nav%4009@taskmanager.9z2q7q7.mongodb.net/?retryWrites=true&w=majority'; // Make sure this URI is correct
+const mongoURI = 'mongodb+srv://abh1nav:Abh1nav%4009@taskmanager.9z2q7q7.mongodb.net/?retryWrites=true&w=majority'; // Ensure this URI is correct
 
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
@@ -29,8 +29,4 @@ const taskRoutes = require('./routes/tasks');
 app.use('/api/tasks', taskRoutes);
 
 // Handle preflight requests
-app.options('*', cors({
-  origin: 'https://task-manager-assignment-frontend.vercel.app',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  credentials: true
-}));
+app.options('*', cors());
