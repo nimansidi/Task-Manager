@@ -6,7 +6,13 @@ const bodyParser = require('body-parser');
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors(
+  {
+    origin: ["https://task-manager-livid-omega.vercel.app"],
+    methods: ["POST", "GET", "DELETE", "PUT"],
+    credentials: true
+  }
+));
 app.use(bodyParser.json());
 
 // MongoDB connection
