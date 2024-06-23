@@ -33,7 +33,7 @@ function App() {
         .catch((error) => console.error("Error updating task:", error));
     } else {
       axios
-        .post("http://localhost:5000/api/tasks", form)
+        .post("https://task-manager-livid-omega.vercel.app/api/tasks", form)
         .then((response) => {
           setTasks([...tasks, response.data]);
           setForm({ title: "", description: "", dueDate: "" });
